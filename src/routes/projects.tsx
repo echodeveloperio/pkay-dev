@@ -41,7 +41,7 @@ function Projects() {
           title="Projects"
           description="Every workspace project with its environment, build count and current risk posture."
           actions={
-            <Link to="/builder">
+            <Link to="/console">
               <Btn variant="primary">
                 <Plus className="size-3.5" /> New project
               </Btn>

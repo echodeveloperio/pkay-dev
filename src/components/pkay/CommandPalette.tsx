@@ -11,7 +11,7 @@ import {
 const items = [
   { group: "Navigate", label: "Dashboard", to: "/" },
   { group: "Navigate", label: "Projects", to: "/projects" },
-  { group: "Navigate", label: "AI Builder", to: "/builder" },
+  { group: "Navigate", label: "Console", to: "/console" },
   { group: "Navigate", label: "Templates", to: "/templates" },
   { group: "Navigate", label: "Documentation", to: "/docs" },
   { group: "Navigate", label: "Settings", to: "/settings" },

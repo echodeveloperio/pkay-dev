@@ -15,19 +15,20 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CommandPalette } from "./CommandPalette";
+import { ThemeToggle } from "@/components/pkay/ThemeToggle";
 
 const topNav = [
   { label: "Projects", to: "/projects" },
-  { label: "AI Builder", to: "/builder" },
+  { label: "Console", to: "/console" },
   { label: "Templates", to: "/templates" },
   { label: "Security Lab", to: "/security" },
   { label: "Docs", to: "/docs" },
 ];
 
 const recentProjects = [
-  { name: "orbit-marketing", to: "/builder" },
-  { name: "vault-dashboard", to: "/builder" },
-  { name: "api-status-page", to: "/builder" },
+  { name: "orbit-marketing", to: "/console" },
+  { name: "vault-dashboard", to: "/console" },
+  { name: "api-status-page", to: "/console" },
 ];
 
 const favorites = [
@@ -92,6 +93,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Command className="size-3" />K
             </span>
           </button>
+          <ThemeToggle />
           <IconButton label="Notifications">
             <Bell className="size-4" />
             <span className="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-primary" />
@@ -113,7 +115,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <aside className="hidden w-56 shrink-0 flex-col border-r border-border bg-sidebar lg:flex">
           <div className="p-3">
             <Link
-              to="/builder"
+              to="/console"
               className="flex h-8 w-full items-center justify-center gap-1.5 rounded-sm bg-primary text-[12px] font-medium text-primary-foreground transition-ui hover:bg-primary-hover"
             >
               <Plus className="size-3.5" /> New Project
@@ -135,7 +137,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <SidebarGroup title="Workspace">
             <SidebarLink to="/" label="Dashboard" icon={<LayoutDashboard className="size-3.5" />} />
             <SidebarLink to="/projects" label="Projects" icon={<FolderCode className="size-3.5" />} />
-            <SidebarLink to="/builder" label="AI Builder" icon={<Sparkles className="size-3.5" />} />
+            <SidebarLink to="/console" label="Console" icon={<Sparkles className="size-3.5" />} />
             <SidebarLink
               to="/security"
               label="Security Lab"
@@ -162,7 +164,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {[
           { to: "/", label: "Home", icon: <LayoutDashboard className="size-4" /> },
           { to: "/projects", label: "Projects", icon: <FolderCode className="size-4" /> },
-          { to: "/builder", label: "Build", icon: <Sparkles className="size-4" /> },
+          { to: "/console", label: "Console", icon: <Sparkles className="size-4" /> },
           { to: "/security", label: "Security", icon: <ShieldAlert className="size-4" /> },
           { to: "/settings", label: "Settings", icon: <Settings className="size-4" /> },
         ].map((i) => {

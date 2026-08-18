@@ -59,7 +59,7 @@ function Templates() {
                   </Tag>
                 ))}
               </div>
-              <Link to="/builder" className="mt-3 block">
+              <Link to="/console" className="mt-3 block">
                 <Btn size="sm" variant="primary" className="w-full">
                   Use template
                 </Btn>
