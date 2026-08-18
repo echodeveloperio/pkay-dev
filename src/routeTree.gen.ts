@@ -17,6 +17,12 @@ import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as SecurityIndexRouteImport } from './routes/security.index'
+import { Route as SecurityAnalystRouteImport } from './routes/security.analyst'
+import { Route as SecurityCodeRouteImport } from './routes/security.code'
+import { Route as SecurityMalwareRouteImport } from './routes/security.malware'
+import { Route as SecurityReportsRouteImport } from './routes/security.reports'
+import { Route as SecurityThreatsRouteImport } from './routes/security.threats'
+import { Route as SecurityVulnerabilitiesRouteImport } from './routes/security.vulnerabilities'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +64,36 @@ const SecurityIndexRoute = SecurityIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SecurityRoute,
 } as any)
+const SecurityAnalystRoute = SecurityAnalystRouteImport.update({
+  id: '/analyst',
+  path: '/analyst',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityCodeRoute = SecurityCodeRouteImport.update({
+  id: '/code',
+  path: '/code',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityMalwareRoute = SecurityMalwareRouteImport.update({
+  id: '/malware',
+  path: '/malware',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityReportsRoute = SecurityReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityThreatsRoute = SecurityThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityVulnerabilitiesRoute = SecurityVulnerabilitiesRouteImport.update({
+  id: '/vulnerabilities',
+  path: '/vulnerabilities',
+  getParentRoute: () => SecurityRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +103,12 @@ export interface FileRoutesByFullPath {
   '/security': typeof SecurityRouteWithChildren
   '/settings': typeof SettingsRoute
   '/templates': typeof TemplatesRoute
+  '/security/analyst': typeof SecurityAnalystRoute
+  '/security/code': typeof SecurityCodeRoute
+  '/security/malware': typeof SecurityMalwareRoute
+  '/security/reports': typeof SecurityReportsRoute
+  '/security/threats': typeof SecurityThreatsRoute
+  '/security/vulnerabilities': typeof SecurityVulnerabilitiesRoute
   '/security/': typeof SecurityIndexRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +118,12 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
   '/templates': typeof TemplatesRoute
+  '/security/analyst': typeof SecurityAnalystRoute
+  '/security/code': typeof SecurityCodeRoute
+  '/security/malware': typeof SecurityMalwareRoute
+  '/security/reports': typeof SecurityReportsRoute
+  '/security/threats': typeof SecurityThreatsRoute
+  '/security/vulnerabilities': typeof SecurityVulnerabilitiesRoute
   '/security': typeof SecurityIndexRoute
 }
 export interface FileRoutesById {
@@ -87,6 +135,12 @@ export interface FileRoutesById {
   '/security': typeof SecurityRouteWithChildren
   '/settings': typeof SettingsRoute
   '/templates': typeof TemplatesRoute
+  '/security/analyst': typeof SecurityAnalystRoute
+  '/security/code': typeof SecurityCodeRoute
+  '/security/malware': typeof SecurityMalwareRoute
+  '/security/reports': typeof SecurityReportsRoute
+  '/security/threats': typeof SecurityThreatsRoute
+  '/security/vulnerabilities': typeof SecurityVulnerabilitiesRoute
   '/security/': typeof SecurityIndexRoute
 }
 export interface FileRouteTypes {
@@ -99,6 +153,12 @@ export interface FileRouteTypes {
     | '/security'
     | '/settings'
     | '/templates'
+    | '/security/analyst'
+    | '/security/code'
+    | '/security/malware'
+    | '/security/reports'
+    | '/security/threats'
+    | '/security/vulnerabilities'
     | '/security/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,6 +168,12 @@ export interface FileRouteTypes {
     | '/projects'
     | '/settings'
     | '/templates'
+    | '/security/analyst'
+    | '/security/code'
+    | '/security/malware'
+    | '/security/reports'
+    | '/security/threats'
+    | '/security/vulnerabilities'
     | '/security'
   id:
     | '__root__'
@@ -118,6 +184,12 @@ export interface FileRouteTypes {
     | '/security'
     | '/settings'
     | '/templates'
+    | '/security/analyst'
+    | '/security/code'
+    | '/security/malware'
+    | '/security/reports'
+    | '/security/threats'
+    | '/security/vulnerabilities'
     | '/security/'
   fileRoutesById: FileRoutesById
 }
@@ -189,14 +261,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SecurityIndexRouteImport
       parentRoute: typeof SecurityRoute
     }
+    '/security/analyst': {
+      id: '/security/analyst'
+      path: '/analyst'
+      fullPath: '/security/analyst'
+      preLoaderRoute: typeof SecurityAnalystRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/code': {
+      id: '/security/code'
+      path: '/code'
+      fullPath: '/security/code'
+      preLoaderRoute: typeof SecurityCodeRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/malware': {
+      id: '/security/malware'
+      path: '/malware'
+      fullPath: '/security/malware'
+      preLoaderRoute: typeof SecurityMalwareRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/reports': {
+      id: '/security/reports'
+      path: '/reports'
+      fullPath: '/security/reports'
+      preLoaderRoute: typeof SecurityReportsRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/threats': {
+      id: '/security/threats'
+      path: '/threats'
+      fullPath: '/security/threats'
+      preLoaderRoute: typeof SecurityThreatsRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/vulnerabilities': {
+      id: '/security/vulnerabilities'
+      path: '/vulnerabilities'
+      fullPath: '/security/vulnerabilities'
+      preLoaderRoute: typeof SecurityVulnerabilitiesRouteImport
+      parentRoute: typeof SecurityRoute
+    }
   }
 }
 
 interface SecurityRouteChildren {
+  SecurityAnalystRoute: typeof SecurityAnalystRoute
+  SecurityCodeRoute: typeof SecurityCodeRoute
+  SecurityMalwareRoute: typeof SecurityMalwareRoute
+  SecurityReportsRoute: typeof SecurityReportsRoute
+  SecurityThreatsRoute: typeof SecurityThreatsRoute
+  SecurityVulnerabilitiesRoute: typeof SecurityVulnerabilitiesRoute
   SecurityIndexRoute: typeof SecurityIndexRoute
 }
 
 const SecurityRouteChildren: SecurityRouteChildren = {
+  SecurityAnalystRoute: SecurityAnalystRoute,
+  SecurityCodeRoute: SecurityCodeRoute,
+  SecurityMalwareRoute: SecurityMalwareRoute,
+  SecurityReportsRoute: SecurityReportsRoute,
+  SecurityThreatsRoute: SecurityThreatsRoute,
+  SecurityVulnerabilitiesRoute: SecurityVulnerabilitiesRoute,
   SecurityIndexRoute: SecurityIndexRoute,
 }
 

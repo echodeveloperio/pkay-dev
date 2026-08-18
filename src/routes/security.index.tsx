@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppShellFreeHeader } from "@/components/pkay/SecurityBits";
-import { Panel, SecurityFinding, Stat, RiskBadge } from "@/components/pkay/primitives";
+import { PageHeader, Panel, SecurityFinding, Stat, RiskBadge } from "@/components/pkay/primitives";
 
 export const Route = createFileRoute("/security/")({
   head: () => ({
@@ -20,7 +19,7 @@ export const Route = createFileRoute("/security/")({
 function Overview() {
   return (
     <div className="space-y-6 p-4 lg:p-6">
-      <AppShellFreeHeader
+      <PageHeader
         title="Security overview"
         description="Defensive posture across all projects. Findings are educational and mitigation-focused."
       />
@@ -90,11 +89,11 @@ function Overview() {
           <Panel title="Recent scans">
             <div className="space-y-2 font-mono text-[11px]">
               {[
-                ["deep scan", "vault-dashboard", "12m ago"],
-                ["dependency scan", "workspace", "1h ago"],
-                ["code security", "internal-crm", "3h ago"],
-                ["secrets scan", "workspace", "yesterday"],
-              ].map(([kind, target, when]) => (
+                { kind: "deep scan", target: "vault-dashboard", when: "12m ago" },
+                { kind: "dependency scan", target: "workspace", when: "1h ago" },
+                { kind: "code security", target: "internal-crm", when: "3h ago" },
+                { kind: "secrets scan", target: "workspace", when: "yesterday" },
+              ].map(({ kind, target, when }) => (
                 <div key={kind + target} className="flex items-center justify-between border border-border px-2 py-1.5">
                   <span>{kind}</span>
                   <span className="text-muted-foreground">{target}</span>
