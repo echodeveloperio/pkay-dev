@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BuilderRouteImport } from './routes/builder'
+import { Route as ConsoleRouteImport } from './routes/console'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as SecurityRouteImport } from './routes/security'
@@ -32,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const BuilderRoute = BuilderRouteImport.update({
   id: '/builder',
   path: '/builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsoleRoute = ConsoleRouteImport.update({
+  id: '/console',
+  path: '/console',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsRoute = DocsRouteImport.update({
@@ -98,6 +104,7 @@ const SecurityVulnerabilitiesRoute = SecurityVulnerabilitiesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/builder': typeof BuilderRoute
+  '/console': typeof ConsoleRoute
   '/docs': typeof DocsRoute
   '/projects': typeof ProjectsRoute
   '/security': typeof SecurityRouteWithChildren
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/builder': typeof BuilderRoute
+  '/console': typeof ConsoleRoute
   '/docs': typeof DocsRoute
   '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/builder': typeof BuilderRoute
+  '/console': typeof ConsoleRoute
   '/docs': typeof DocsRoute
   '/projects': typeof ProjectsRoute
   '/security': typeof SecurityRouteWithChildren
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/builder'
+    | '/console'
     | '/docs'
     | '/projects'
     | '/security'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/builder'
+    | '/console'
     | '/docs'
     | '/projects'
     | '/settings'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/builder'
+    | '/console'
     | '/docs'
     | '/projects'
     | '/security'
@@ -196,6 +208,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BuilderRoute: typeof BuilderRoute
+  ConsoleRoute: typeof ConsoleRoute
   DocsRoute: typeof DocsRoute
   ProjectsRoute: typeof ProjectsRoute
   SecurityRoute: typeof SecurityRouteWithChildren
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       path: '/builder'
       fullPath: '/builder'
       preLoaderRoute: typeof BuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/console': {
+      id: '/console'
+      path: '/console'
+      fullPath: '/console'
+      preLoaderRoute: typeof ConsoleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs': {
@@ -333,6 +353,7 @@ const SecurityRouteWithChildren = SecurityRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BuilderRoute: BuilderRoute,
+  ConsoleRoute: ConsoleRoute,
   DocsRoute: DocsRoute,
   ProjectsRoute: ProjectsRoute,
   SecurityRoute: SecurityRouteWithChildren,
