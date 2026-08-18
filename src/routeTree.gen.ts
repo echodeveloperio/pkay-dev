@@ -10,33 +10,197 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BuilderRouteImport } from './routes/builder'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as SecurityIndexRouteImport } from './routes/security.index'
+import { Route as SecurityAnalystRouteImport } from './routes/security.analyst'
+import { Route as SecurityCodeRouteImport } from './routes/security.code'
+import { Route as SecurityMalwareRouteImport } from './routes/security.malware'
+import { Route as SecurityReportsRouteImport } from './routes/security.reports'
+import { Route as SecurityThreatsRouteImport } from './routes/security.threats'
+import { Route as SecurityVulnerabilitiesRouteImport } from './routes/security.vulnerabilities'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuilderRoute = BuilderRouteImport.update({
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityIndexRoute = SecurityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityAnalystRoute = SecurityAnalystRouteImport.update({
+  id: '/analyst',
+  path: '/analyst',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityCodeRoute = SecurityCodeRouteImport.update({
+  id: '/code',
+  path: '/code',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityMalwareRoute = SecurityMalwareRouteImport.update({
+  id: '/malware',
+  path: '/malware',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityReportsRoute = SecurityReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityThreatsRoute = SecurityThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => SecurityRoute,
+} as any)
+const SecurityVulnerabilitiesRoute = SecurityVulnerabilitiesRouteImport.update({
+  id: '/vulnerabilities',
+  path: '/vulnerabilities',
+  getParentRoute: () => SecurityRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
+  '/docs': typeof DocsRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/security/analyst': typeof SecurityAnalystRoute
+  '/security/code': typeof SecurityCodeRoute
+  '/security/malware': typeof SecurityMalwareRoute
+  '/security/reports': typeof SecurityReportsRoute
+  '/security/threats': typeof SecurityThreatsRoute
+  '/security/vulnerabilities': typeof SecurityVulnerabilitiesRoute
+  '/security/': typeof SecurityIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
+  '/docs': typeof DocsRoute
+  '/projects': typeof ProjectsRoute
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/security/analyst': typeof SecurityAnalystRoute
+  '/security/code': typeof SecurityCodeRoute
+  '/security/malware': typeof SecurityMalwareRoute
+  '/security/reports': typeof SecurityReportsRoute
+  '/security/threats': typeof SecurityThreatsRoute
+  '/security/vulnerabilities': typeof SecurityVulnerabilitiesRoute
+  '/security': typeof SecurityIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
+  '/docs': typeof DocsRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/security/analyst': typeof SecurityAnalystRoute
+  '/security/code': typeof SecurityCodeRoute
+  '/security/malware': typeof SecurityMalwareRoute
+  '/security/reports': typeof SecurityReportsRoute
+  '/security/threats': typeof SecurityThreatsRoute
+  '/security/vulnerabilities': typeof SecurityVulnerabilitiesRoute
+  '/security/': typeof SecurityIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/builder'
+    | '/docs'
+    | '/projects'
+    | '/security'
+    | '/settings'
+    | '/templates'
+    | '/security/analyst'
+    | '/security/code'
+    | '/security/malware'
+    | '/security/reports'
+    | '/security/threats'
+    | '/security/vulnerabilities'
+    | '/security/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/builder'
+    | '/docs'
+    | '/projects'
+    | '/settings'
+    | '/templates'
+    | '/security/analyst'
+    | '/security/code'
+    | '/security/malware'
+    | '/security/reports'
+    | '/security/threats'
+    | '/security/vulnerabilities'
+    | '/security'
+  id:
+    | '__root__'
+    | '/'
+    | '/builder'
+    | '/docs'
+    | '/projects'
+    | '/security'
+    | '/settings'
+    | '/templates'
+    | '/security/analyst'
+    | '/security/code'
+    | '/security/malware'
+    | '/security/reports'
+    | '/security/threats'
+    | '/security/vulnerabilities'
+    | '/security/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BuilderRoute: typeof BuilderRoute
+  DocsRoute: typeof DocsRoute
+  ProjectsRoute: typeof ProjectsRoute
+  SecurityRoute: typeof SecurityRouteWithChildren
+  SettingsRoute: typeof SettingsRoute
+  TemplatesRoute: typeof TemplatesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +212,132 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/builder': {
+      id: '/builder'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security/': {
+      id: '/security/'
+      path: '/'
+      fullPath: '/security/'
+      preLoaderRoute: typeof SecurityIndexRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/analyst': {
+      id: '/security/analyst'
+      path: '/analyst'
+      fullPath: '/security/analyst'
+      preLoaderRoute: typeof SecurityAnalystRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/code': {
+      id: '/security/code'
+      path: '/code'
+      fullPath: '/security/code'
+      preLoaderRoute: typeof SecurityCodeRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/malware': {
+      id: '/security/malware'
+      path: '/malware'
+      fullPath: '/security/malware'
+      preLoaderRoute: typeof SecurityMalwareRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/reports': {
+      id: '/security/reports'
+      path: '/reports'
+      fullPath: '/security/reports'
+      preLoaderRoute: typeof SecurityReportsRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/threats': {
+      id: '/security/threats'
+      path: '/threats'
+      fullPath: '/security/threats'
+      preLoaderRoute: typeof SecurityThreatsRouteImport
+      parentRoute: typeof SecurityRoute
+    }
+    '/security/vulnerabilities': {
+      id: '/security/vulnerabilities'
+      path: '/vulnerabilities'
+      fullPath: '/security/vulnerabilities'
+      preLoaderRoute: typeof SecurityVulnerabilitiesRouteImport
+      parentRoute: typeof SecurityRoute
+    }
   }
 }
 
+interface SecurityRouteChildren {
+  SecurityAnalystRoute: typeof SecurityAnalystRoute
+  SecurityCodeRoute: typeof SecurityCodeRoute
+  SecurityMalwareRoute: typeof SecurityMalwareRoute
+  SecurityReportsRoute: typeof SecurityReportsRoute
+  SecurityThreatsRoute: typeof SecurityThreatsRoute
+  SecurityVulnerabilitiesRoute: typeof SecurityVulnerabilitiesRoute
+  SecurityIndexRoute: typeof SecurityIndexRoute
+}
+
+const SecurityRouteChildren: SecurityRouteChildren = {
+  SecurityAnalystRoute: SecurityAnalystRoute,
+  SecurityCodeRoute: SecurityCodeRoute,
+  SecurityMalwareRoute: SecurityMalwareRoute,
+  SecurityReportsRoute: SecurityReportsRoute,
+  SecurityThreatsRoute: SecurityThreatsRoute,
+  SecurityVulnerabilitiesRoute: SecurityVulnerabilitiesRoute,
+  SecurityIndexRoute: SecurityIndexRoute,
+}
+
+const SecurityRouteWithChildren = SecurityRoute._addFileChildren(
+  SecurityRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BuilderRoute: BuilderRoute,
+  DocsRoute: DocsRoute,
+  ProjectsRoute: ProjectsRoute,
+  SecurityRoute: SecurityRouteWithChildren,
+  SettingsRoute: SettingsRoute,
+  TemplatesRoute: TemplatesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
