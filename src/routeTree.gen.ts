@@ -10,33 +10,125 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BuilderRouteImport } from './routes/builder'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as SecurityIndexRouteImport } from './routes/security.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuilderRoute = BuilderRouteImport.update({
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityIndexRoute = SecurityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SecurityRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
+  '/docs': typeof DocsRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/security/': typeof SecurityIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
+  '/docs': typeof DocsRoute
+  '/projects': typeof ProjectsRoute
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/security': typeof SecurityIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/builder': typeof BuilderRoute
+  '/docs': typeof DocsRoute
+  '/projects': typeof ProjectsRoute
+  '/security': typeof SecurityRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/security/': typeof SecurityIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/builder'
+    | '/docs'
+    | '/projects'
+    | '/security'
+    | '/settings'
+    | '/templates'
+    | '/security/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/builder'
+    | '/docs'
+    | '/projects'
+    | '/settings'
+    | '/templates'
+    | '/security'
+  id:
+    | '__root__'
+    | '/'
+    | '/builder'
+    | '/docs'
+    | '/projects'
+    | '/security'
+    | '/settings'
+    | '/templates'
+    | '/security/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BuilderRoute: typeof BuilderRoute
+  DocsRoute: typeof DocsRoute
+  ProjectsRoute: typeof ProjectsRoute
+  SecurityRoute: typeof SecurityRouteWithChildren
+  SettingsRoute: typeof SettingsRoute
+  TemplatesRoute: typeof TemplatesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +140,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/builder': {
+      id: '/builder'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security/': {
+      id: '/security/'
+      path: '/'
+      fullPath: '/security/'
+      preLoaderRoute: typeof SecurityIndexRouteImport
+      parentRoute: typeof SecurityRoute
+    }
   }
 }
 
+interface SecurityRouteChildren {
+  SecurityIndexRoute: typeof SecurityIndexRoute
+}
+
+const SecurityRouteChildren: SecurityRouteChildren = {
+  SecurityIndexRoute: SecurityIndexRoute,
+}
+
+const SecurityRouteWithChildren = SecurityRoute._addFileChildren(
+  SecurityRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BuilderRoute: BuilderRoute,
+  DocsRoute: DocsRoute,
+  ProjectsRoute: ProjectsRoute,
+  SecurityRoute: SecurityRouteWithChildren,
+  SettingsRoute: SettingsRoute,
+  TemplatesRoute: TemplatesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
