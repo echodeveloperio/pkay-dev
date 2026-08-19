@@ -280,7 +280,7 @@ function SidebarContent({
           <SidebarNavItem
             key={item.label}
             item={item}
-            onClick={item.label === "Search" ? onSearch : undefined}
+            {...(item.label === "Search" ? { onClick: onSearch } : {})}
           />
         ))}
       </nav>
