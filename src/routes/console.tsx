@@ -151,11 +151,24 @@ const projects: Project[] = [
    ════════════════════════════════════════════════════════════════ */
 
 function ConsoleDashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
+      <ConsoleSearch open={searchOpen} onOpenChange={setSearchOpen} />
+
       {/* Mobile overlay */}
       {mobileSidebarOpen && (
         <div
@@ -171,8 +184,12 @@ function ConsoleDashboard() {
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <SidebarContent onClose={() => setMobileSidebarOpen(false)} />
+        <SidebarContent
+          onClose={() => setMobileSidebarOpen(false)}
+          onSearch={() => setSearchOpen(true)}
+        />
       </aside>
+
 
       {/* Main content */}
       <div className="flex min-w-0 flex-1 flex-col">
