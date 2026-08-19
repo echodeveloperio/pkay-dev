@@ -76,24 +76,24 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.1935 0.0035 285.9);
 
-  --primary: oklch(0.7002 0.1712 47.5); /* #F0821E */
+  --primary: oklch(0.5155 0.2526 264.7); /* #1B4EF5 */
   --primary-foreground: oklch(1 0 0);
-  --primary-hover: oklch(0.6402 0.1704 44); /* #D96F12 */
-  --primary-soft: oklch(0.9502 0.0322 75); /* #FCEBD9 */
+  --primary-hover: oklch(0.4638 0.2291 264.8); /* #1642D6 */
+  --primary-soft: oklch(0.9358 0.0291 273.1); /* #E3E9FE */
 
   --secondary: oklch(0.9691 0 0);
   --secondary-foreground: oklch(0.2718 0.0037 285.9); /* #303034 */
   --muted: oklch(0.9691 0 0);
   --muted-foreground: oklch(0.5545 0.0075 286.1); /* #77777D */
   --subtle-foreground: oklch(0.2718 0.0037 285.9);
-  --accent: oklch(0.9502 0.0322 75);
-  --accent-foreground: oklch(0.4102 0.1002 48);
+  --accent: oklch(0.9358 0.0291 273.1);
+  --accent-foreground: oklch(0.3543 0.1635 264.8);
 
   --destructive: oklch(0.5498 0.198 24.5);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.9197 0.0027 286.3); /* #E4E4E7 */
   --input: oklch(0.9197 0.0027 286.3);
-  --ring: oklch(0.7002 0.1712 47.5);
+  --ring: oklch(0.5155 0.2526 264.7);
 
   --background-dark: oklch(0.1683 0.0033 286); /* #111113 */
   --surface-dark: oklch(0.2247 0.0043 286); /* #1B1B1F */
@@ -105,7 +105,7 @@
   --info: oklch(0.5545 0.0075 286.1);
   --success: oklch(0.5834 0.1177 155);
 
-  --chart-1: oklch(0.7002 0.1712 47.5);
+  --chart-1: oklch(0.5155 0.2526 264.7);
   --chart-2: oklch(0.5545 0.0075 286.1);
   --chart-3: oklch(0.5905 0.1063 235);
   --chart-4: oklch(0.5834 0.1177 155);
@@ -113,12 +113,12 @@
 
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.2718 0.0037 285.9);
-  --sidebar-primary: oklch(0.7002 0.1712 47.5);
+  --sidebar-primary: oklch(0.5155 0.2526 264.7);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.9502 0.0322 75);
-  --sidebar-accent-foreground: oklch(0.4102 0.1002 48);
+  --sidebar-accent: oklch(0.9358 0.0291 273.1);
+  --sidebar-accent-foreground: oklch(0.3543 0.1635 264.8);
   --sidebar-border: oklch(0.9197 0.0027 286.3);
-  --sidebar-ring: oklch(0.7002 0.1712 47.5);
+  --sidebar-ring: oklch(0.5155 0.2526 264.7);
 }
 
 .dark {
@@ -128,23 +128,24 @@
   --card-foreground: oklch(0.9691 0 0);
   --popover: oklch(0.2247 0.0043 286);
   --popover-foreground: oklch(0.9691 0 0);
-  --primary: oklch(0.7002 0.1712 47.5);
-  --primary-foreground: oklch(0.16 0.01 60);
-  --primary-hover: oklch(0.7502 0.1602 50);
-  --primary-soft: oklch(0.3 0.055 50);
+  --primary: oklch(0.5853 0.2257 266.2);
+  --primary-foreground: oklch(1 0 0);
+  --primary-hover: oklch(0.6453 0.1957 266.5);
+  --primary-soft: oklch(0.3 0.1 265);
   --secondary: oklch(0.2247 0.0043 286);
   --secondary-foreground: oklch(0.9691 0 0);
   --muted: oklch(0.2247 0.0043 286);
   --muted-foreground: oklch(0.6245 0.0075 286.1);
   --subtle-foreground: oklch(0.8 0.004 286);
-  --accent: oklch(0.28 0.04 50);
-  --accent-foreground: oklch(0.9 0.07 60);
+  --accent: oklch(0.29 0.09 265);
+  --accent-foreground: oklch(0.88 0.08 266);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.7002 0.1712 47.5);
+  --ring: oklch(0.5853 0.2257 266.2);
   --sidebar: oklch(0.2247 0.0043 286);
   --sidebar-foreground: oklch(0.9691 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
+  --chart-1: oklch(0.5853 0.2257 266.2);
 }
 
 @layer base {
@@ -201,4 +202,167 @@
 
 @utility caret-blink {
   animation: pkay-caret 1s step-end infinite;
+}
+
+/* ---------- Premium scroll UI ---------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: color-mix(in oklab, var(--color-foreground) 22%, transparent) transparent;
+    scrollbar-width: thin;
+  }
+
+  * {
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklab, var(--color-foreground) 18%, transparent);
+    border: 3px solid transparent;
+    background-clip: content-box;
+    border-radius: 999px;
+    transition: background-color 150ms ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-primary) 24%, transparent);
+  }
+}
+
+/* Fine-grained scrollbar for dense panels */
+@utility scroll-slim {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-width: 1px;
+  }
+}
+
+/* Soft fade mask at the top/bottom of scroll regions */
+@utility scroll-fade {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 12px,
+    black calc(100% - 12px),
+    transparent 100%
+  );
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes pkay-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pkay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pkay-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pkay-shimmer {
+  from {
+    background-position: -160% 0;
+  }
+  to {
+    background-position: 260% 0;
+  }
+}
+
+@utility animate-fade-up {
+  animation: pkay-fade-up 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-fade-soft {
+  animation: pkay-fade 220ms ease-out both;
+}
+
+@utility animate-pop {
+  animation: pkay-scale-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Skeleton shimmer */
+@utility skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-muted) 0%,
+    color-mix(in oklab, var(--color-foreground) 8%, var(--color-muted)) 50%,
+    var(--color-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: pkay-shimmer 1.4s linear infinite;
+}
+
+/* Subtle premium hover lift for cards/rows */
+@utility hover-lift {
+  transition:
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+  &:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--color-primary) 40%, var(--color-border));
+    box-shadow: 0 6px 20px -12px color-mix(in oklab, var(--color-foreground) 40%, transparent);
+  }
+}
+
+/* Scroll-driven reveal (progressive enhancement) */
+@utility reveal {
+  animation: pkay-fade-up 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  @supports (animation-timeline: view()) {
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
