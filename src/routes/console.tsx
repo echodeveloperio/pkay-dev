@@ -34,6 +34,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/pkay/ThemeToggle";
 import { PkayLogo } from "@/components/pkay/PkayLogo";
+import { ConsoleSearch } from "@/components/pkay/ConsoleSearch";
 
 export const Route = createFileRoute("/console")({
   head: () => ({
@@ -151,11 +152,24 @@ const projects: Project[] = [
    ════════════════════════════════════════════════════════════════ */
 
 function ConsoleDashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
+      <ConsoleSearch open={searchOpen} onOpenChange={setSearchOpen} />
+
       {/* Mobile overlay */}
       {mobileSidebarOpen && (
         <div
@@ -171,8 +185,12 @@ function ConsoleDashboard() {
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <SidebarContent onClose={() => setMobileSidebarOpen(false)} />
+        <SidebarContent
+          onClose={() => setMobileSidebarOpen(false)}
+          onSearch={() => setSearchOpen(true)}
+        />
       </aside>
+
 
       {/* Main content */}
       <div className="flex min-w-0 flex-1 flex-col">
@@ -232,7 +250,13 @@ function ConsoleDashboard() {
    SIDEBAR
    ════════════════════════════════════════════════════════════════ */
 
-function SidebarContent({ onClose }: { onClose: () => void }) {
+function SidebarContent({
+  onClose,
+  onSearch,
+}: {
+  onClose: () => void;
+  onSearch: () => void;
+}) {
   return (
     <>
       {/* Logo row */}
@@ -253,7 +277,11 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
       {/* Main nav */}
       <nav className="space-y-0.5 px-3 py-3">
         {mainNav.map((item) => (
-          <SidebarNavItem key={item.label} item={item} />
+          <SidebarNavItem
+            key={item.label}
+            item={item}
+            {...(item.label === "Search" ? { onClick: onSearch } : {})}
+          />
         ))}
       </nav>
 
@@ -311,9 +339,11 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
 function SidebarNavItem({
   item,
   to,
+  onClick,
 }: {
   item: NavItem;
   to?: string;
+  onClick?: () => void;
 }) {
   const Icon = item.icon;
   const content = (
@@ -349,6 +379,7 @@ function SidebarNavItem({
 
   return (
     <button
+      onClick={onClick}
       className={cn(
         baseClass,
         "w-full text-left",
