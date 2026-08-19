@@ -203,3 +203,166 @@
 @utility caret-blink {
   animation: pkay-caret 1s step-end infinite;
 }
+
+/* ---------- Premium scroll UI ---------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: color-mix(in oklab, var(--color-foreground) 22%, transparent) transparent;
+    scrollbar-width: thin;
+  }
+
+  * {
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklab, var(--color-foreground) 18%, transparent);
+    border: 3px solid transparent;
+    background-clip: content-box;
+    border-radius: 999px;
+    transition: background-color 150ms ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-primary) 24%, transparent);
+  }
+}
+
+/* Fine-grained scrollbar for dense panels */
+@utility scroll-slim {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-width: 1px;
+  }
+}
+
+/* Soft fade mask at the top/bottom of scroll regions */
+@utility scroll-fade {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 12px,
+    black calc(100% - 12px),
+    transparent 100%
+  );
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes pkay-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pkay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pkay-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pkay-shimmer {
+  from {
+    background-position: -160% 0;
+  }
+  to {
+    background-position: 260% 0;
+  }
+}
+
+@utility animate-fade-up {
+  animation: pkay-fade-up 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-fade-soft {
+  animation: pkay-fade 220ms ease-out both;
+}
+
+@utility animate-pop {
+  animation: pkay-scale-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Skeleton shimmer */
+@utility skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-muted) 0%,
+    color-mix(in oklab, var(--color-foreground) 8%, var(--color-muted)) 50%,
+    var(--color-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: pkay-shimmer 1.4s linear infinite;
+}
+
+/* Subtle premium hover lift for cards/rows */
+@utility hover-lift {
+  transition:
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+  &:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--color-primary) 40%, var(--color-border));
+    box-shadow: 0 6px 20px -12px color-mix(in oklab, var(--color-foreground) 40%, transparent);
+  }
+}
+
+/* Scroll-driven reveal (progressive enhancement) */
+@utility reveal {
+  animation: pkay-fade-up 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  @supports (animation-timeline: view()) {
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
