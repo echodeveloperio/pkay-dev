@@ -105,7 +105,7 @@
   --info: oklch(0.5545 0.0075 286.1);
   --success: oklch(0.5834 0.1177 155);
 
-  --chart-1: oklch(0.7002 0.1712 47.5);
+  --chart-1: oklch(0.5155 0.2526 264.7);
   --chart-2: oklch(0.5545 0.0075 286.1);
   --chart-3: oklch(0.5905 0.1063 235);
   --chart-4: oklch(0.5834 0.1177 155);
@@ -113,12 +113,12 @@
 
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.2718 0.0037 285.9);
-  --sidebar-primary: oklch(0.7002 0.1712 47.5);
+  --sidebar-primary: oklch(0.5155 0.2526 264.7);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.9502 0.0322 75);
-  --sidebar-accent-foreground: oklch(0.4102 0.1002 48);
+  --sidebar-accent: oklch(0.9358 0.0291 273.1);
+  --sidebar-accent-foreground: oklch(0.3543 0.1635 264.8);
   --sidebar-border: oklch(0.9197 0.0027 286.3);
-  --sidebar-ring: oklch(0.7002 0.1712 47.5);
+  --sidebar-ring: oklch(0.5155 0.2526 264.7);
 }
 
 .dark {
@@ -128,23 +128,24 @@
   --card-foreground: oklch(0.9691 0 0);
   --popover: oklch(0.2247 0.0043 286);
   --popover-foreground: oklch(0.9691 0 0);
-  --primary: oklch(0.7002 0.1712 47.5);
-  --primary-foreground: oklch(0.16 0.01 60);
-  --primary-hover: oklch(0.7502 0.1602 50);
-  --primary-soft: oklch(0.3 0.055 50);
+  --primary: oklch(0.5853 0.2257 266.2);
+  --primary-foreground: oklch(1 0 0);
+  --primary-hover: oklch(0.6453 0.1957 266.5);
+  --primary-soft: oklch(0.3 0.1 265);
   --secondary: oklch(0.2247 0.0043 286);
   --secondary-foreground: oklch(0.9691 0 0);
   --muted: oklch(0.2247 0.0043 286);
   --muted-foreground: oklch(0.6245 0.0075 286.1);
   --subtle-foreground: oklch(0.8 0.004 286);
-  --accent: oklch(0.28 0.04 50);
-  --accent-foreground: oklch(0.9 0.07 60);
+  --accent: oklch(0.29 0.09 265);
+  --accent-foreground: oklch(0.88 0.08 266);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.7002 0.1712 47.5);
+  --ring: oklch(0.5853 0.2257 266.2);
   --sidebar: oklch(0.2247 0.0043 286);
   --sidebar-foreground: oklch(0.9691 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
+  --chart-1: oklch(0.5853 0.2257 266.2);
 }
 
 @layer base {
