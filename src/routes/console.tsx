@@ -34,6 +34,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/pkay/ThemeToggle";
 import { PkayLogo } from "@/components/pkay/PkayLogo";
+import { ConsoleSearch } from "@/components/pkay/ConsoleSearch";
 
 export const Route = createFileRoute("/console")({
   head: () => ({
@@ -249,7 +250,13 @@ function ConsoleDashboard() {
    SIDEBAR
    ════════════════════════════════════════════════════════════════ */
 
-function SidebarContent({ onClose }: { onClose: () => void }) {
+function SidebarContent({
+  onClose,
+  onSearch,
+}: {
+  onClose: () => void;
+  onSearch: () => void;
+}) {
   return (
     <>
       {/* Logo row */}
@@ -270,7 +277,11 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
       {/* Main nav */}
       <nav className="space-y-0.5 px-3 py-3">
         {mainNav.map((item) => (
-          <SidebarNavItem key={item.label} item={item} />
+          <SidebarNavItem
+            key={item.label}
+            item={item}
+            onClick={item.label === "Search" ? onSearch : undefined}
+          />
         ))}
       </nav>
 
@@ -328,9 +339,11 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
 function SidebarNavItem({
   item,
   to,
+  onClick,
 }: {
   item: NavItem;
   to?: string;
+  onClick?: () => void;
 }) {
   const Icon = item.icon;
   const content = (
@@ -366,6 +379,7 @@ function SidebarNavItem({
 
   return (
     <button
+      onClick={onClick}
       className={cn(
         baseClass,
         "w-full text-left",
