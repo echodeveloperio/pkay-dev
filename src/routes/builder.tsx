@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/pkay/ThemeToggle";
+import { PkayLogo } from "@/components/pkay/PkayLogo";
 
 export const Route = createFileRoute("/builder")({
   head: () => ({
@@ -151,13 +152,8 @@ function Builder() {
     <div className="flex h-screen flex-col bg-background">
       {/* Top bar */}
       <header className="flex h-11 shrink-0 items-center gap-3 border-b border-border bg-card px-3">
-        <Link to="/console" className="flex items-center gap-2">
-          <span className="grid size-6 place-items-center rounded-sm bg-primary font-mono text-[11px] font-bold text-primary-foreground">
-            P
-          </span>
-          <span className="font-mono text-[13px] font-semibold tracking-tight">
-            PKAY
-          </span>
+        <Link to="/console">
+          <PkayLogo className="h-9 w-auto" />
         </Link>
         <span className="h-4 w-px bg-border" />
         <span className="font-mono text-[12px] font-semibold">

@@ -10,6 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/pkay/ThemeToggle";
+import { PkayLogo } from "@/components/pkay/PkayLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -503,12 +504,7 @@ function SiteFooter() {
     <footer className="border-t border-border bg-card py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row">
         <div className="flex items-center gap-2">
-          <span className="grid size-6 place-items-center rounded-sm bg-primary font-mono text-[10px] font-bold text-primary-foreground">
-            P
-          </span>
-          <span className="font-mono text-[13px] font-semibold tracking-tight">
-            PKAY
-          </span>
+          <PkayLogo className="h-10 w-auto" />
         </div>
         <div className="flex items-center gap-6">
           <Link

@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 import { CommandPalette } from "./CommandPalette";
 import { ThemeToggle } from "@/components/pkay/ThemeToggle";
+import { PkayLogo } from "@/components/pkay/PkayLogo";
 
 const topNav = [
   { label: "Projects", to: "/projects" },
@@ -56,10 +57,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Topbar */}
       <header className="sticky top-0 z-30 flex h-12 shrink-0 items-center gap-4 border-b border-border bg-card px-3">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid size-6 place-items-center rounded-sm bg-primary font-mono text-[11px] font-bold text-primary-foreground">
-            P
-          </span>
-          <span className="font-mono text-sm font-semibold tracking-tight">PKAY</span>
+          <PkayLogo />
         </Link>
 
         <nav className="hidden items-center gap-0.5 md:flex">

@@ -16,10 +16,7 @@ import {
   ChevronRight,
   Plus,
   MoreHorizontal,
-  PanelLeftClose,
-  PanelLeft,
   Settings,
-  LogOut,
   Sparkles,
   ShieldAlert,
   FileCode,
@@ -36,6 +33,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/pkay/ThemeToggle";
+import { PkayLogo } from "@/components/pkay/PkayLogo";
 
 export const Route = createFileRoute("/console")({
   head: () => ({
@@ -180,33 +178,6 @@ function ConsoleDashboard() {
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Top bar */}
         <header className="flex h-12 shrink-0 items-center gap-3 border-b border-border bg-card px-4">
-          <button
-            onClick={() => {
-              if (window.innerWidth < 1024) {
-                setMobileSidebarOpen(true);
-              } else {
-                setSidebarOpen(!sidebarOpen);
-              }
-            }}
-            className="grid size-7 place-items-center rounded-sm text-muted-foreground transition-ui hover:bg-muted hover:text-foreground"
-            title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
-          >
-            {sidebarOpen ? (
-              <PanelLeftClose className="size-4" />
-            ) : (
-              <PanelLeft className="size-4" />
-            )}
-          </button>
-          <Link to="/" className="flex items-center gap-2">
-            <span className="grid size-6 place-items-center rounded-sm bg-primary font-mono text-[11px] font-bold text-primary-foreground">
-              P
-            </span>
-            <span className="font-mono text-[13px] font-semibold tracking-tight">
-              PKAY
-            </span>
-          </Link>
-          <span className="h-4 w-px bg-border" />
-          <span className="text-[12px] text-muted-foreground">Console</span>
           <div className="ml-auto flex items-center gap-1.5">
             <button className="grid size-7 place-items-center rounded-sm text-muted-foreground transition-ui hover:bg-muted hover:text-foreground relative">
               <Bell className="size-4" />
@@ -262,19 +233,12 @@ function ConsoleDashboard() {
    ════════════════════════════════════════════════════════════════ */
 
 function SidebarContent({ onClose }: { onClose: () => void }) {
-  const [workspaceOpen, setWorkspaceOpen] = useState(false);
-
   return (
     <>
       {/* Logo row */}
       <div className="flex h-12 items-center justify-between border-b border-border px-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid size-6 place-items-center rounded-sm bg-primary font-mono text-[11px] font-bold text-primary-foreground">
-            P
-          </span>
-          <span className="font-mono text-[13px] font-semibold tracking-tight">
-            PKAY
-          </span>
+          <PkayLogo />
         </Link>
         <button
           onClick={onClose}
@@ -284,36 +248,7 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
         </button>
       </div>
 
-      {/* Workspace selector */}
-      <div className="border-b border-border px-3 py-2">
-        <button
-          onClick={() => setWorkspaceOpen(!workspaceOpen)}
-          className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-[12px] transition-ui hover:bg-muted"
-        >
-          <span className="grid size-5 place-items-center rounded-sm bg-primary-soft font-mono text-[10px] font-bold text-accent-foreground">
-            EK
-          </span>
-          <span className="truncate font-medium">Error Kruz</span>
-          <ChevronDown
-            className={cn(
-              "ml-auto size-3 text-muted-foreground transition-transform",
-              workspaceOpen && "rotate-180",
-            )}
-          />
-        </button>
-        {workspaceOpen && (
-          <div className="mt-1 space-y-0.5 pl-7">
-            {["Personal", "Team workspace", "Enterprise"].map((w) => (
-              <button
-                key={w}
-                className="block w-full rounded-sm px-2 py-1 text-left text-[11px] text-muted-foreground transition-ui hover:bg-muted hover:text-foreground"
-              >
-                {w}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+
 
       {/* Main nav */}
       <nav className="space-y-0.5 px-3 py-3">
@@ -367,24 +302,6 @@ function SidebarContent({ onClose }: { onClose: () => void }) {
             item={{ icon: Settings, label: "Settings" }}
             to="/settings"
           />
-        </div>
-        <div className="mt-3 border-t border-border pt-3">
-          <div className="flex items-center gap-2 px-2">
-            <span className="grid size-7 place-items-center rounded-sm bg-secondary-foreground font-mono text-[11px] text-primary-foreground">
-              EK
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-[12px] font-medium">
-                Error Kruz
-              </div>
-              <div className="font-mono text-[10px] text-muted-foreground">
-                pro plan
-              </div>
-            </div>
-            <button className="grid size-6 place-items-center rounded-sm text-muted-foreground transition-ui hover:bg-muted hover:text-foreground">
-              <LogOut className="size-3.5" />
-            </button>
-          </div>
         </div>
       </div>
     </>
